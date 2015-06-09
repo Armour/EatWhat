@@ -12,6 +12,7 @@ UserToStore = np.array([[randint(0,5) for i in xrange(storeAmount)] for j in xra
 kdt = KDTree(UserToStore, leaf_size=30, metric='euclidean')
 ans = kdt.query(UserToStore, k=10, return_distance=False)    
 
+EatWhat = []
 count = 0
 for line in ans:
 	count += 1
@@ -33,7 +34,7 @@ for line in ans:
 		#print tmp
 		highRank = [each[0] for each in tmp[:5]]
 		#print highRank
-				#print tmp
+		#print tmp
 		
 		#print highRank
 		for store in highRank[:10]:
@@ -42,6 +43,7 @@ for line in ans:
 
 	print 'recommandation:',
 	print recommand
-	print 
+	
+	EatWhat.append(recommand)
 
 	print 
