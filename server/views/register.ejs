@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <%=title %>
+    </title>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/javascripts/jquery.motionCaptcha.0.2.js"></script>
+    <link rel="stylesheet" href="/stylesheets/jquery.motionCaptcha.0.2.css" type="text/css" />
+</head>
+
+<body data-twttr-rendered="true" class="mc-noselect">
+    <div id="wrap">
+        <form action="#" method="post" id="mc-form" class="mc-active">
+            <p>
+                <input id="username" class="placeholder" type="text" placeholder="your username">
+            </p>
+            <p>
+                <input id="password" class="placeholder" type="password" placeholder="your password">
+            </p>
+            <p>
+                <input id="repassword" class="placeholder" type="password" placeholder="your password again">
+            </p>
+            <div id="mc">
+                <p>Please draw the shape in the box to submit the form: (<a onclick="window.location.reload()" href="#" title="Click for a new shape">new shape</a>)</p>
+                <canvas id="mc-canvas" width="220" height="154" class="x">
+                    Your browser doesn't support the canvas element - please visit in a modern browser.
+                </canvas>
+                <input type="hidden" id="mc-action" value="/users/register">
+            </div>
+            <p>
+                <input id="submitBtn" disabled="disabled" autocomplete="false" type="submit" value="Submit">
+            </p>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $('#mc-form').motionCaptcha({
+                shapes: ['triangle', 'x', 'rectangle', 'circle', 'check', 'zigzag', 'arrow', 'delete', 'pigtail', 'star']
+            });
+            $('#submitBtn').click(function(e) {
+                e.preventDefault();
+                $.post('/users/register', {
+                        'username': $('#username').val(),
+                        'password': $('#password').val(),
+                        'repassword': $('#repassword').val()
+                    },
+                    function(data) {
+                        if (data.code === 1) {
+                            alert('No Username Inputed');
+                        } else if (data.code === 2) {
+                            alert('No Password Inputed');
+                        } else if (data.code === 3) {
+                            alert('You Need Reinput Your Password');
+                        } else if (data.code === 4) {
+                            alert('Two Password Not Match');
+                        } else if (data.code === 0) {
+                            alert('Register Success!');
+                        }
+                    })
+            })
+        });
+    </script>
+</body>
+
+</html>

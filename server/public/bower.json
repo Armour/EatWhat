@@ -1,0 +1,19 @@
+{
+  "name": "eatwhat",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Armour/EatWhat",
+  "authors": [
+    "Armour <497052684@qq.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}

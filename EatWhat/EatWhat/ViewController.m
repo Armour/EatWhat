@@ -54,7 +54,7 @@ enum {
     dispatch_async(requestQueue, ^{
         NSInteger status = -1;
         @try {
-            NSURL *postURL = [NSURL URLWithString:@"http://localhost:3002/login"];
+            NSURL *postURL = [NSURL URLWithString:@"http://localhost:3002/users/login"];
             NSString *postStr = [NSString stringWithFormat:@"username=%@&password=%@", self.textUsername.text, self.textPassword.text];
             NSData *postData = [postStr dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
             NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
@@ -78,7 +78,7 @@ enum {
                                       error:&jsonError];
             NSLog(@"Response with json ==> %@", jsonData);
 
-            status = [jsonData[@"err"] integerValue];
+            status = [jsonData[@"code"] integerValue];
         }
         @catch (NSException *exception) {
             [self.activityIndicator stopAnimating];
@@ -89,7 +89,7 @@ enum {
             [self.activityIndicator stopAnimating];
             [self.activityIndicator setHidden:TRUE];
             if (status == 0) {
-                [self performSegueWithIdentifier:@"showTabBarController" sender:self];
+                [self performSegueWithIdentifier:@"showWeb" sender:self];
             } else if (status == 1) {
                 [self popAlert:@"Login Fail" withMessage:@"No username input ╮(╯_╰)╭"];
             } else if (status == 5) {
@@ -160,7 +160,7 @@ enum {
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"showTabBarController"]){
+    if([segue.identifier isEqualToString:@"showWeb"]){
         //MyTabBarController *controller = (MyTabBarController *)segue.destinationViewController;
     }
 }

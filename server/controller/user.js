@@ -3,7 +3,7 @@ var mysql = require('mysql');
 
 var client = mysql.createConnection(require('../dbConfig.json'));
 
-exports.register = function (req, res) {
+exports.register = function(req, res) {
     if (req.body.username.length === 0) {
         return res.json({
             code: 1,
@@ -28,22 +28,22 @@ exports.register = function (req, res) {
             message: "Password Not Match"
         })
     }
-    client.query('INSERT INTO user (username, password) VALUES(?,?)',[req.body.username, req.body.password],
-            function(err) {
-                if (err) {
-                    throw err;
-                } else {
-                    return res.json({
-                        code: 0,
-                        message: "Insert Success"
-                    })
-                }
+    client.query('INSERT INTO user (username, password) VALUES(?,?)', [req.body.username, req.body.password],
+        function(err) {
+            if (err) {
+                throw err;
+            } else {
+                return res.json({
+                    code: 0,
+                    message: "Insert Success"
+                })
             }
+        }
     )
 }
 
 
-exports.login = function (req, res) {
+exports.login = function(req, res) {
     if (req.body.username.length === 0) {
         return res.json({
             code: 1,
@@ -70,20 +70,20 @@ exports.login = function (req, res) {
                 }
             } else {
                 return res.json({
-                    code : 6,
+                    code: 6,
                     message: "Username Does Not Exist"
                 })
             }
         });
 };
 
-express.logout = function (req, res) {
-    req.session.destory(err) {
+express.logout = function(req, res) {
+    req.session.destory(function(err) {
         if (!err) {
             return res.json({
                 code: 0,
                 message: "Logout Success"
             })
         }
-    }
+    })
 }
