@@ -45,7 +45,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="wTr-DX-nfF">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="309"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="手机号／邮箱" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3vc-wJ-qXo">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3vc-wJ-qXo">
                                 <rect key="frame" x="49" y="332" width="277" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="SsT-I0-kZJ"/>
@@ -53,7 +53,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XoL-wZ-hin">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XoL-wZ-hin">
                                 <rect key="frame" x="49" y="392" width="277" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="M1m-CQ-AUT"/>
@@ -68,7 +68,7 @@
                                     <constraint firstAttribute="height" constant="30" id="Bwf-T4-K6T"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="立即登录">
+                                <state key="normal" title="Login in">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -76,28 +76,31 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="21W-VE-0DS">
-                                <rect key="frame" x="49" y="430" width="62" height="30"/>
+                                <rect key="frame" x="49" y="430" width="100" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="2M4-mH-SEM"/>
-                                    <constraint firstAttribute="width" constant="62" id="5ma-oT-eoQ"/>
+                                    <constraint firstAttribute="width" constant="100" id="5ma-oT-eoQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="11"/>
-                                <state key="normal" title="忘记密码？">
+                                <state key="normal" title="Forget password？">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mow-wv-c6s">
-                                <rect key="frame" x="49" y="515" width="141" height="30"/>
+                                <rect key="frame" x="49" y="515" width="163" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="141" id="2KZ-2a-89m"/>
+                                    <constraint firstAttribute="width" constant="163" id="2KZ-2a-89m"/>
                                     <constraint firstAttribute="height" constant="30" id="OXe-ey-txa"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
-                                <state key="normal" title="没有账号？快速注册">
+                                <state key="normal" title="No account? Register now!">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="N9f-yS-qZ3" kind="show" identifier="register" id="HbC-0D-MVq"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -136,7 +139,7 @@
                         <outlet property="loginButton" destination="tAR-7E-RJi" id="2MC-9J-Pgs"/>
                         <outlet property="textPassword" destination="XoL-wZ-hin" id="eFe-ke-Kmf"/>
                         <outlet property="textUsername" destination="3vc-wJ-qXo" id="u0o-kb-8Da"/>
-                        <segue destination="s4p-o8-zr3" kind="show" id="jni-8T-6fR"/>
+                        <segue destination="s4p-o8-zr3" kind="show" identifier="showWeb" id="jni-8T-6fR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q1v-56-Lpb" sceneMemberID="firstResponder"/>
@@ -147,6 +150,30 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-20.5" y="386.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="knk-ME-GSL">
+            <objects>
+                <viewController id="N9f-yS-qZ3" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hu5-YY-nMd"/>
+                        <viewControllerLayoutGuide type="bottom" id="mXb-aM-1L8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nmx-rH-1LI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Omh-bH-O0X">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tCs-wu-kfH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-20.5" y="1204.5"/>
         </scene>
     </scenes>
     <resources>

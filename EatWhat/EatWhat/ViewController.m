@@ -54,7 +54,7 @@ enum {
     dispatch_async(requestQueue, ^{
         NSInteger status = -1;
         @try {
-            NSURL *postURL = [NSURL URLWithString:@"http://v2.api.boxbuy.cc/getItemClasses?json=true"];
+            NSURL *postURL = [NSURL URLWithString:@"http://localhost:3002/login"];
             NSString *postStr = [NSString stringWithFormat:@"username=%@&password=%@", self.textUsername.text, self.textPassword.text];
             NSData *postData = [postStr dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
             NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
@@ -66,7 +66,7 @@ enum {
             [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
             [request setValue:postContentType forHTTPHeaderField:@"Content-Type"];
             [request setHTTPShouldHandleCookies:YES];
-            //[request setHTTPBody:postData];
+            [request setHTTPBody:postData];
 
             NSError *requestError = [[NSError alloc] init];
             NSHTTPURLResponse *requestResponse;
@@ -83,17 +83,19 @@ enum {
         @catch (NSException *exception) {
             [self.activityIndicator stopAnimating];
             [self.activityIndicator setHidden:TRUE];
-            [self popAlert:@"登录失败" withMessage:@"您好像网络不太好哦╮(╯_╰)╭"];
+            [self popAlert:@"Login Fail" withMessage:@"Your network sucks ╮(╯_╰)╭"];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.activityIndicator stopAnimating];
             [self.activityIndicator setHidden:TRUE];
             if (status == 0) {
                 [self performSegueWithIdentifier:@"showTabBarController" sender:self];
-            } else if (status == 10004) {
-                [self popAlert:@"登录失败" withMessage:@"您输入的密码有误╮(╯_╰)╭"];
-            } else if (status == 10002) {
-                [self popAlert:@"登录失败" withMessage:@"您输入的用户名并不存在╮(╯_╰)╭"];
+            } else if (status == 1) {
+                [self popAlert:@"Login Fail" withMessage:@"No username input ╮(╯_╰)╭"];
+            } else if (status == 5) {
+                [self popAlert:@"Login Fail" withMessage:@"Wrong password ╮(╯_╰)╭"];
+            } else if (status == 6) {
+                [self popAlert:@"Login Fail" withMessage:@"Username Does Not Exist ╮(╯_╰)╭"];
             }
         });
     });
