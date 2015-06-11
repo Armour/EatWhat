@@ -1,24 +1,23 @@
 //
-//  WebViewController.m
+//  RegisterViewController.m
 //  EatWhat
 //
-//  Created by Armour on 6/9/15.
+//  Created by Armour on 6/11/15.
 //  Copyright (c) 2015 ZJU. All rights reserved.
 //
 
-#import "WebViewController.h"
+#import "RegisterViewController.h"
 #import "WebViewJavascriptBridge.h"
 
-@interface WebViewController ()
+@interface RegisterViewController ()
 
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIWebView *registerWebView;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
 @property WebViewJavascriptBridge* bridge;
 
 @end
 
-@implementation WebViewController
-
+@implementation RegisterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,18 +52,18 @@
 }
 
 - (void)addWebViewBridge {
-    self.bridge = [WebViewJavascriptBridge bridgeForWebView:_webView webViewDelegate:self handler:^(id data, WVJBResponseCallback responseCallback) {
-        if ([data isEqualToString:@"go back"]) {
-            [self performSegueWithIdentifier:@"backToLogin2" sender:self];
+    self.bridge = [WebViewJavascriptBridge bridgeForWebView:_registerWebView webViewDelegate:self handler:^(id data, WVJBResponseCallback responseCallback) {
+        if ([data isEqualToString:@"register success"]) {
+            [self performSegueWithIdentifier:@"backToLogin" sender:self];
         }
         responseCallback(@"");
     }];
 }
 
 - (void)loadWebViewRequest {
-    NSString *requestUrl = [[NSString alloc] initWithFormat:@"http://localhost:3002/index"];
+    NSString *requestUrl = [[NSString alloc] initWithFormat:@"http://localhost:3002/users/register"];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:requestUrl]];
-    [_webView loadRequest:request];
+    [_registerWebView loadRequest:request];
 }
 
 - (void)didReceiveMemoryWarning {

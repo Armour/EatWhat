@@ -25,6 +25,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="webView" destination="4Hr-4Y-OgQ" id="7Be-P2-A3l"/>
+                        <segue destination="Smf-bV-J2V" kind="show" identifier="backToLogin2" id="6BL-Rs-OWL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mkH-8J-och" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -151,10 +155,10 @@
             </objects>
             <point key="canvasLocation" x="-20.5" y="386.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Register View Controller-->
         <scene sceneID="knk-ME-GSL">
             <objects>
-                <viewController id="N9f-yS-qZ3" sceneMemberID="viewController">
+                <viewController id="N9f-yS-qZ3" customClass="RegisterViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hu5-YY-nMd"/>
                         <viewControllerLayoutGuide type="bottom" id="mXb-aM-1L8"/>
@@ -170,6 +174,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="registerWebView" destination="Omh-bH-O0X" id="HXm-G2-PKL"/>
+                        <segue destination="Smf-bV-J2V" kind="show" identifier="backToLogin" id="TbJ-Hr-7Z8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tCs-wu-kfH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -179,4 +187,7 @@
     <resources>
         <image name="logo" width="1278" height="1036"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="6BL-Rs-OWL"/>
+    </inferredMetricsTieBreakers>
 </document>

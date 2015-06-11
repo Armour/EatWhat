@@ -15,6 +15,9 @@
 		76BD6F221B25929000398086 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76BD6F211B25929000398086 /* Images.xcassets */; };
 		76BD6F251B25929000398086 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76BD6F231B25929000398086 /* LaunchScreen.xib */; };
 		76BD6F311B25929000398086 /* EatWhatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BD6F301B25929000398086 /* EatWhatTests.m */; };
+		76C299451B2968E9001EFC00 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C299441B2968E9001EFC00 /* RegisterViewController.m */; };
+		76C2994A1B296C2C001EFC00 /* WebViewJavascriptBridge.js.txt in Resources */ = {isa = PBXBuildFile; fileRef = 76C299481B296C2C001EFC00 /* WebViewJavascriptBridge.js.txt */; };
+		76C2994B1B296C2C001EFC00 /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C299491B296C2C001EFC00 /* WebViewJavascriptBridge.m */; };
 		76C4AD0D1B27436600CA7269 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C4AD0C1B27436600CA7269 /* WebViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +46,11 @@
 		76BD6F2A1B25929000398086 /* EatWhatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EatWhatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		76BD6F2F1B25929000398086 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76BD6F301B25929000398086 /* EatWhatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EatWhatTests.m; sourceTree = "<group>"; };
+		76C299431B2968E9001EFC00 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		76C299441B2968E9001EFC00 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		76C299471B296C2C001EFC00 /* WebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge.h; sourceTree = "<group>"; };
+		76C299481B296C2C001EFC00 /* WebViewJavascriptBridge.js.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WebViewJavascriptBridge.js.txt; sourceTree = "<group>"; };
+		76C299491B296C2C001EFC00 /* WebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge.m; sourceTree = "<group>"; };
 		76C4AD0B1B27436600CA7269 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		76C4AD0C1B27436600CA7269 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,10 +97,13 @@
 				76BD6F1B1B25929000398086 /* ViewController.h */,
 				76BD6F1C1B25929000398086 /* ViewController.m */,
 				76BD6F1E1B25929000398086 /* Main.storyboard */,
+				76C299431B2968E9001EFC00 /* RegisterViewController.h */,
+				76C299441B2968E9001EFC00 /* RegisterViewController.m */,
 				76C4AD0B1B27436600CA7269 /* WebViewController.h */,
 				76C4AD0C1B27436600CA7269 /* WebViewController.m */,
 				76BD6F211B25929000398086 /* Images.xcassets */,
 				76BD6F231B25929000398086 /* LaunchScreen.xib */,
+				76C299461B296C2C001EFC00 /* WebViewJavascriptBridge */,
 				76BD6F111B25929000398086 /* Supporting Files */,
 			);
 			path = EatWhat;
@@ -125,6 +136,16 @@
 				76BD6F2F1B25929000398086 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		76C299461B296C2C001EFC00 /* WebViewJavascriptBridge */ = {
+			isa = PBXGroup;
+			children = (
+				76C299471B296C2C001EFC00 /* WebViewJavascriptBridge.h */,
+				76C299481B296C2C001EFC00 /* WebViewJavascriptBridge.js.txt */,
+				76C299491B296C2C001EFC00 /* WebViewJavascriptBridge.m */,
+			);
+			path = WebViewJavascriptBridge;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +228,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76C2994A1B296C2C001EFC00 /* WebViewJavascriptBridge.js.txt in Resources */,
 				76BD6F201B25929000398086 /* Main.storyboard in Resources */,
 				76BD6F251B25929000398086 /* LaunchScreen.xib in Resources */,
 				76BD6F221B25929000398086 /* Images.xcassets in Resources */,
@@ -228,9 +250,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				76BD6F171B25929000398086 /* AppDelegate.m in Sources */,
+				76C299451B2968E9001EFC00 /* RegisterViewController.m in Sources */,
 				76C4AD0D1B27436600CA7269 /* WebViewController.m in Sources */,
 				76BD6F1A1B25929000398086 /* EatWhat.xcdatamodeld in Sources */,
 				76BD6F1D1B25929000398086 /* ViewController.m in Sources */,
+				76C2994B1B296C2C001EFC00 /* WebViewJavascriptBridge.m in Sources */,
 				76BD6F141B25929000398086 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
