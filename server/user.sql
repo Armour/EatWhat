@@ -25,3 +25,19 @@ CREATE TABLE `evaluate` (
     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (restaurant_id) REFERENCES restaurant(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+CREATE TABLE `recommend` (
+    id int(11) NOT NULL AUTO_INCREMENT,
+    restaurant_id int(11) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (restaurant_id) REFERENCES restaurant(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE `user_recommend` (
+    id int(11) NOT NULL AUTO_INCREMENT,
+    user_id int(11) NOT NULL,
+    recommend_id int(11) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (recommend_id) REFERENCES recommend(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
