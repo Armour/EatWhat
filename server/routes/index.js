@@ -15,8 +15,8 @@ router.get('/', function(req, res, next) {
             var restaurant = [];
             if (rows) {
                 console.log('hello');
-                rows.foreach(function(e) {
-                    console.log('!' + e);
+                console.log(rows);
+                rows.forEach(function(e) {
                     restaurant.push({
                         id: e.id,
                         name: e.name,

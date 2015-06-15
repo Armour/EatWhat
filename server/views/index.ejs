@@ -9,7 +9,13 @@
 </head>
 
 <body>
-    <p><%=restaurant %></p>
+    <% for (var i = 0; i < restaurant.length; i++) { %>
+        <p><%=restaurant[i].id %></p>
+        <p><%=restaurant[i].name %></p>
+        <p><%=restaurant[i].score %></p>
+        <p><%=restaurant[i].total %></p>
+        <p><%=restaurant[i].picture %></p>
+    <% } %>
 </body>
 
 </html>

@@ -11,7 +11,9 @@ CREATE TABLE `user` (
     PRIMARY KEY (id)
 );
 
-INSERT INTO `user`(`id`, `username`, `password`) VALUES (0, 'test', 'test');
+INSERT INTO `user`(`username`, `password`) VALUES ('test', 'test');
+UPDATE user SET id = 0 WHERE id = 1;
+ALTER TABLE `user` AUTO_INCREMENT = 1;
 
 CREATE TABLE `restaurant` (
     id int(11) NOT NULL,
