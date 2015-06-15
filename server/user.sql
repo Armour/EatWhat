@@ -8,7 +8,8 @@ CREATE TABLE `user` (
     id int(11) NOT NULL AUTO_INCREMENT,
     username varchar(30) NOT NULL,
     password varchar(20) NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    UNIQUE KEY (username)
 );
 
 INSERT INTO `user`(`username`, `password`) VALUES ('test', 'test');
