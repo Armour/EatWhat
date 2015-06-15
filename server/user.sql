@@ -11,6 +11,8 @@ CREATE TABLE `user` (
     PRIMARY KEY (id)
 );
 
+INSERT INTO `user`(`id`, `username`, `password`) VALUES (0, 'test', 'test');
+
 CREATE TABLE `restaurant` (
     id int(11) NOT NULL,
     name varchar(30) NOT NULL,

@@ -77,7 +77,7 @@ exports.login = function(req, res) {
         });
 };
 
-express.logout = function(req, res) {
+exports.logout = function(req, res) {
     req.session.destory(function(err) {
         if (!err) {
             return res.json({
