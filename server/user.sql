@@ -12,9 +12,11 @@ CREATE TABLE `user` (
 );
 
 CREATE TABLE `restaurant` (
-    id int(11) NOT NULL AUTO_INCREMENT,
+    id int(11) NOT NULL,
     name varchar(30) NOT NULL,
-    picture varchar(30) DEFAULT 'default.jpg',
+    score int(11) NOT NULL,
+    total int(11) NOT NULL,
+    picture varchar(200) DEFAULT 'default.jpg',
     PRIMARY KEY (id)
 );
 
