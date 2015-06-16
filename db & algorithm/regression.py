@@ -18,7 +18,7 @@ cursor = db.cursor()
 def LoadInData():
 	global db
 	_storeAmount = 100
-	_userAmount = 10
+	_userAmount = 20
 	_UserToStore =  np.array([[random.randint(-5,5) for i in xrange(_storeAmount)] for j in xrange(_userAmount)])
 	
 	storeAmount = 0
@@ -48,7 +48,7 @@ def LoadInData():
 	UserToStore = np.array(inMatrix)
 	
 
-	#等到数据库准备好了，就把这三个变量前面的下划线去掉，导入数据库里的数据。
+		
 	return _storeAmount, _userAmount, _UserToStore
 
 def SaveInData(EatWhat):
@@ -63,23 +63,12 @@ def SaveInData(EatWhat):
 		json.dump(res,outfile,indent=4)
 
 	return 
-	
-	'''
-	add_user = ("INSERT INTO user "
-               "(id, username, password) "
-               "VALUES (%s, %s, %s)")
-	info_user = (str(10),'kael','123123')
-	cursor.execute(add_user,info_user)
-	db.commit()
-	print 'XD'
-	'''
-	pass
 
 def UserCollaborativeFiltering():
 	from sklearn.neighbors import KDTree
 
 	storeAmount, userAmount, UserToStore = LoadInData()
-	kdRange = 20
+	kdRange = 10
 	
 	kdt = KDTree(UserToStore, leaf_size=30, metric='euclidean')
 	dis, ans = kdt.query(UserToStore, k=kdRange, return_distance=True)    
@@ -105,7 +94,7 @@ def UserCollaborativeFiltering():
 			axisY = _y + 1
 			others = line[axisY]
 
-			power =  math.sqrt((1 / (1 + dis[person][others]))	 * 100) / 10
+			#power =  math.sqrt((1 / (1 + dis[person][others]))	 * 100) / 10
 
 			tmp = [[i ,UserToStore[others][i]] for i in xrange(storeAmount)]
 			
