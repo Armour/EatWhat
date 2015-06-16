@@ -15,6 +15,7 @@
 </head>
 
 <body>
+  <div id="tmpuser" style="display: none" value="<%= user.id %>"><%= user.id %></div>
   <div class="row eatTitle">
     <div class="col-xs-5"> EatWhat </div>
     <div class="col-xs-7">
@@ -29,15 +30,39 @@
       <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><%=restaurant[i].id %></a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><%=restaurant[i].score %></a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><%=restaurant[i].total %></a></li>
-        <li role="presentation"><img src=<%=restaurant[i].picture%> /></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Current restaurant id: <%=restaurant[i].id %></a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Current restaurant score: <%=restaurant[i].score %></a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Current restaurant total score: <%=restaurant[i].total %></a></li>
+        <li role="presentation"><img src="<%= restaurant[i].img %>" /></li>
       </ul>
     </div>
   <% } %>
-  <p><%= user.id %></p>
-  <p><%= user.username %></p>
+  <div>
+    <% for (var i = 0; i < restaurant.length; i++) { %>
+      <label class="checkbox-inline">
+        <input type="checkbox" class="checkboxContent" value="<%= restaurant[i].id %>">
+        <%= restaurant[i].name %>
+      </label>
+    <% } %>
+    <button type="button" class="btn btn-default" id="updateScore">Submit</button>
+  </div>
+  <script type="text/javascript">
+    $('#updateScore').click(function() {
+      var checkedValue = $('.checkboxContent:checked').map(function() {
+        return parseInt(this.value);
+      }).get();
+      console.log(parseInt($('#tmpuser').text()))
+
+      $.ajax({
+        type: "POST",
+        url: "/order",
+        data: {
+          user_id: parseInt($('#tmpuser').text()),
+          recommend: checkedValue
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>
