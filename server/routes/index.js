@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var fs = require('fs');
 var mysql = require('mysql');
 var indexController = require('../controller/index.js');
+var recommend = require('../../db\ \&\ algorithm/recommend.json');
 
 var client = mysql.createConnection(require('../dbConfig.json'));
 
@@ -10,17 +10,16 @@ var client = mysql.createConnection(require('../dbConfig.json'));
 router.get('/', function(req, res, next) {
     var user = [];
     var restaurant = [];
-    var recommend = [];
 
-    client.query('SELECT * FROM user WHERE username=?',[req.query.username],
-            function(err, rows) {
-                if (err) {
-                    throw err;
-                }
-                if (rows) {
-                    user = rows[0];
-                }
-            });
+    client.query('SELECT * FROM user WHERE username=?', [req.query.username],
+        function(err, rows) {
+            if (err) {
+                throw err;
+            }
+            if (rows) {
+                user = rows[0];
+            }
+        });
 
     client.query('SELECT * FROM restaurant ORDER BY RAND() LIMIT 20',
         function(err, rows) {
@@ -40,7 +39,6 @@ router.get('/', function(req, res, next) {
                     })
                 })
             }
-            //client.query('SELECT * FROM user, recommend, recommend_uesr WHERE')
             res.render('index', {
                 title: 'Express',
                 user: user,
