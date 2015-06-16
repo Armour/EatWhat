@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
 var mysql = require('mysql');
 var indexController = require('../controller/index.js');
 
@@ -7,12 +8,25 @@ var client = mysql.createConnection(require('../dbConfig.json'));
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+    var user = [];
+    var restaurant = [];
+    var recommend = [];
+
+    client.query('SELECT * FROM user WHERE username=?',[req.query.username],
+            function(err, rows) {
+                if (err) {
+                    throw err;
+                }
+                if (rows) {
+                    user = rows[0];
+                }
+            });
+
     client.query('SELECT * FROM restaurant ORDER BY RAND() LIMIT 20',
         function(err, rows) {
             if (err) {
                 throw err;
             }
-            var restaurant = [];
             if (rows) {
                 console.log('hello');
                 console.log(rows);
@@ -29,8 +43,9 @@ router.get('/', function(req, res, next) {
             //client.query('SELECT * FROM user, recommend, recommend_uesr WHERE')
             res.render('index', {
                 title: 'Express',
+                user: user,
                 restaurant: restaurant,
-                username: req.query.username
+                recommend: recommend
             });
         });
 });
