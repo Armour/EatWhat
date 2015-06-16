@@ -8,10 +8,12 @@
 
 #import "ViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "WebViewController.h"
 
 @interface ViewController ()
 
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
+@property (strong, nonatomic) NSString *username;
 
 @end
 
@@ -89,6 +91,7 @@ enum {
             [self.activityIndicator stopAnimating];
             [self.activityIndicator setHidden:TRUE];
             if (status == 0) {
+                self.username = self.textUsername.text;
                 [self performSegueWithIdentifier:@"showWeb" sender:self];
             } else if (status == 1) {
                 [self popAlert:@"Login Fail" withMessage:@"No username input ╮(╯_╰)╭"];
@@ -161,7 +164,8 @@ enum {
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"showWeb"]){
-        //MyTabBarController *controller = (MyTabBarController *)segue.destinationViewController;
+        WebViewController *controller = (WebViewController *)segue.destinationViewController;
+        [controller setUsername:self.username];
     }
 }
 

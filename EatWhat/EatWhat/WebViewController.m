@@ -62,7 +62,7 @@
 }
 
 - (void)loadWebViewRequest {
-    NSString *requestUrl = [[NSString alloc] initWithFormat:@"http://localhost:3002/index"];
+    NSString *requestUrl = [[NSString alloc] initWithFormat:@"http://localhost:3002/index?username=%@", self.username];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:requestUrl]];
     [_webView loadRequest:request];
 }

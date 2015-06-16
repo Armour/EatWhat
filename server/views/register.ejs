@@ -10,7 +10,7 @@
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/javascripts/jquery.motionCaptcha.0.2.js"></script>
     <link rel="stylesheet" href="/stylesheets/jquery.motionCaptcha.0.2.css" type="text/css" />
-    <link rel="stylesheet" href="/stylesheets/style.css" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/register.css" type="text/css" />
 </head>
 
 <body data-twttr-rendered="true" class="mc-noselect">
@@ -39,32 +39,49 @@
     </div>
 
     <script type="text/javascript">
-        jQuery(document).ready(function($) {
-            $('#mc-form').motionCaptcha({
-                shapes: ['triangle', 'x', 'rectangle', 'circle', 'check', 'zigzag', 'arrow', 'delete', 'pigtail', 'star']
-            });
-            $('#submitBtn').click(function(e) {
-                e.preventDefault();
-                $.post('/users/register', {
-                        'username': $('#username').val(),
-                        'password': $('#password').val(),
-                        'repassword': $('#repassword').val()
-                    },
-                    function(data) {
-                        if (data.code === 1) {
-                            alert('No Username Inputed');
-                        } else if (data.code === 2) {
-                            alert('No Password Inputed');
-                        } else if (data.code === 3) {
-                            alert('You Need Reinput Your Password');
-                        } else if (data.code === 4) {
-                            alert('Two Password Not Match');
-                        } else if (data.code === 0) {
-                            alert('Register Success!');
-                        }
-                    })
+        function connectWebViewJavascriptBridge(callback) {
+            if (window.WebViewJavascriptBridge) {
+                callback(WebViewJavascriptBridge)
+            } else {
+                document.addEventListener('WebViewJavascriptBridgeReady', function() {
+                    callback(WebViewJavascriptBridge)
+                }, false)
+            }
+        }
+
+        connectWebViewJavascriptBridge(function(bridge) {
+            jQuery(document).ready(function($) {
+                $('#mc-form').motionCaptcha({
+                    shapes: ['triangle', 'x', 'rectangle', 'circle', 'check', 'zigzag', 'arrow', 'delete', 'pigtail', 'star']
+                })
+                $('#submitBtn').click(function(e) {
+                    e.preventDefault();
+                    $.post('/users/register', {
+                            'username': $('#username').val(),
+                            'password': $('#password').val(),
+                            'repassword': $('#repassword').val()
+                        },
+                        function(data) {
+                            if (data.code === 1) {
+                                alert('No Username Inputed');
+                            } else if (data.code === 2) {
+                                alert('No Password Inputed');
+                            } else if (data.code === 3) {
+                                alert('You Need Reinput Your Password');
+                            } else if (data.code === 4) {
+                                alert('Two Password Not Match');
+                            } else if (data.code === 5) {
+                                alert('Username already exist!');
+                            } else if (data.code === 0) {
+                                bridge.send('register success', function responseCallback(responseData) {
+                                    console.log("Response: ", responseData)
+                                })
+                                alert('Register Success!');
+                            }
+                        })
+                })
             })
-        });
+        })
     </script>
 </body>
 

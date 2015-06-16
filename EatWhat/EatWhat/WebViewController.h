@@ -10,4 +10,6 @@
 
 @interface WebViewController : UIViewController <UIWebViewDelegate>
 
+@property (strong, nonatomic) NSString *username;
+
 @end

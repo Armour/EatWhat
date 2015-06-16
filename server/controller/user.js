@@ -31,7 +31,11 @@ exports.register = function(req, res) {
     client.query('INSERT INTO user (username, password) VALUES(?,?)', [req.body.username, req.body.password],
         function(err) {
             if (err) {
-                throw err;
+                //throw err;
+                return res.json({
+                    code: 5,
+                    message: "Already Exist"
+                })
             } else {
                 return res.json({
                     code: 0,

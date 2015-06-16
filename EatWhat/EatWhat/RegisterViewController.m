@@ -56,7 +56,7 @@
         if ([data isEqualToString:@"register success"]) {
             [self performSegueWithIdentifier:@"backToLogin" sender:self];
         }
-        responseCallback(@"");
+        responseCallback(@"Back!");
     }];
 }
 
