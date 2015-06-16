@@ -2,8 +2,8 @@ import json
 import mysql.connector
 import re
 config = {
-	'user' : 'root',
-	'password' : '',
+	'user' : 'orz',
+	'password' : '123456',
 	'host' : '127.0.0.1',
 	'database' : 'eat',
 	'raise_on_warnings': True

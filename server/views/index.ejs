@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" type="text/css" />
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="/javascripts/bootstrap.min.js"> </script>
-    <script src="/javascripts/app.js"> </script>
-    <script src="/javascripts/logout.js"> </script>
+    <script src="/javascripts/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/stylesheets/app.css" type="text/css" />
     <title>
         <%=title %>
@@ -15,54 +13,91 @@
 </head>
 
 <body>
-  <div id="tmpuser" style="display: none" value="<%= user.id %>"><%= user.id %></div>
-  <div class="row eatTitle">
-    <div class="col-xs-5"> EatWhat </div>
-    <div class="col-xs-7">
-      <a href="/users/logout" id="logout" role="button" class="btn btn-danger">Log out</a>
-      <button type="button" class="btn btn-primary"><%= user.username %></button>
+    <div id="tmpuser" style="display: none" value="<%=user.id %>">
+        <%=user.id %>
     </div>
-  </div>
-  <% for (var i = 0; i < restaurant.length; i++) { %>
-    <div class="dropdown">
-      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" style="width: 100%">
-        <%=restaurant[i].name %>
-      <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Current restaurant id: <%=restaurant[i].id %></a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Current restaurant score: <%=restaurant[i].score %></a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Current restaurant total score: <%=restaurant[i].total %></a></li>
-        <li role="presentation"><img src="<%= restaurant[i].img %>" /></li>
-      </ul>
+    <div class="row eatTitle">
+        <div class="col-xs-5">EatWhat</div>
+        <div class="col-xs-7">
+            <a href="/users/logout" id="logout" role="button" class="btn btn-danger">Log out</a>
+            <button type="button" class="btn btn-primary">
+                <%=user.username %>
+            </button>
+        </div>
     </div>
-  <% } %>
-  <div>
-    <% for (var i = 0; i < restaurant.length; i++) { %>
-      <label class="checkbox-inline">
-        <input type="checkbox" class="checkboxContent" value="<%= restaurant[i].id %>">
-        <%= restaurant[i].name %>
-      </label>
-    <% } %>
-    <button type="button" class="btn btn-default" id="updateScore">Submit</button>
-  </div>
-  <script type="text/javascript">
-    $('#updateScore').click(function() {
-      var checkedValue = $('.checkboxContent:checked').map(function() {
-        return parseInt(this.value);
-      }).get();
-      console.log(parseInt($('#tmpuser').text()))
+    <% for (var i=0; i < recommend[user.id].length; i++) { %>
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" style="width: 100%">
+                <%=restaurant[recommend[user.id][i]].name %>
+                    <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Restaurant star: <%=restaurant[recommend[user.id][i]].score %></a>
+                </li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Total visited: <%=restaurant[recommend[user.id][i]].total %></a>
+                </li>
+                <li role="presentation">
+                    <img src="<%=restaurant[recommend[user.id][i]].picture %>"/>
+                </li>
+            </ul>
+        </div>
+        <% } %>
+            <div>
+                <% for (var i=0 ; i < restaurant.length; i++) { %>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" class="checkboxContent" value="<%=restaurant[i].id %>">
+                        <%=restaurant[i].name %>
+                    </label>
+                <% } %>
+                    <button type="button" class="btn btn-default" id="updateScore">Submit</button>
+            </div>
+            <script type="text/javascript">
+                function connectWebViewJavascriptBridge(callback) {
+                    if (window.WebViewJavascriptBridge) {
+                        callback(WebViewJavascriptBridge)
+                    } else {
+                        document.addEventListener('WebViewJavascriptBridgeReady', function() {
+                            callback(WebViewJavascriptBridge)
+                        }, false)
+                    }
+                }
 
-      $.ajax({
-        type: "POST",
-        url: "/order",
-        data: {
-          user_id: parseInt($('#tmpuser').text()),
-          recommend: checkedValue
-        }
-      });
-    });
-  </script>
+                connectWebViewJavascriptBridge(function(bridge) {
+                    jQuery(document).ready(function($) {
+                        $("#logout").click(function(e) {
+                            console.log('!!!!!!!!~~~~~~~~');
+                            e.preventDefault();
+                            $.get('/users/logout',
+                                function(data) {
+                                    if (data.code === 0) {
+                                        bridge.send('logout success', function responseCallback(responseData) {
+                                            console.log("Response: ", responseData)
+                                        })
+                                        alert('logout Success!');
+                                    }
+                                })
+                        })
+
+                        $('#updateScore').click(function() {
+                            e.preventDefault();
+                            var checkedValue = $('.checkboxContent:checked').map(function() {
+                                return parseInt(this.value);
+                            }).get();
+                            console.log(parseInt($('#tmpuser').text()))
+
+                            $.post('/order', {
+                                'user_id': parseInt($('#tmpuser ').text()),
+                                'recommend': checkedValue
+                            }, function(data) {
+                                if (data.code === 0) {
+                                    alert('Order Success!');
+                                    window.location.reload();
+                                }
+                            })
+                        })
+                    })
+                })
+            </script>
 </body>
 
 </html>

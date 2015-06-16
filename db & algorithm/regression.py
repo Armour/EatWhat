@@ -1,3 +1,6 @@
+#!/usr/bin/env python2.7
+# -*- coding: utf-8 -*-
+
 import numpy as np
 import random
 import math
@@ -5,8 +8,8 @@ import mysql.connector
 import json
 
 config = {
-	'user' : 'root',
-	'password' : '',
+	'user' : 'orz',
+	'password' : '123456',
 	'host' : '127.0.0.1',
 	'database' : 'eat',
 	'raise_on_warnings': True

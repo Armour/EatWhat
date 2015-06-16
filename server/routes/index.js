@@ -5,9 +5,8 @@ var exec = require('child_process').exec;
 var mysql = require('mysql');
 var indexController = require('../controller/index.js');
 
-var child;
-var recommend = require('../../db\ \&\ algorithm/recommend.json');
 var client = mysql.createConnection(require('../dbConfig.json'));
+var child;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -20,6 +19,8 @@ router.get('/', function(req, res, next) {
             console.log('exec error: ' + error);
         }
     });
+    var recommend = require('../../db\ \&\ algorithm/recommend.json');
+    console.log(recommend);
 
     client.query('SELECT * FROM user WHERE username=?', [req.query.username],
         function(err, rows) {
