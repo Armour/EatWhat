@@ -29,7 +29,8 @@ router.get('/', function(req, res, next) {
             //client.query('SELECT * FROM user, recommend, recommend_uesr WHERE')
             res.render('index', {
                 title: 'Express',
-                restaurant: restaurant
+                restaurant: restaurant,
+                username: req.query.username
             });
         });
 });
