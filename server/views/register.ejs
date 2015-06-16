@@ -36,6 +36,9 @@
                 <input id="submitBtn" disabled="disabled" autocomplete="false" type="submit" value="Submit">
             </p>
         </form>
+        <form action="#" id="back">
+            <input id="backBtn" type="submit" value="Back">
+        </form>
     </div>
 
     <script type="text/javascript">
@@ -64,14 +67,19 @@
                         function(data) {
                             if (data.code === 1) {
                                 alert('No Username Inputed');
+                                window.location.reload();
                             } else if (data.code === 2) {
                                 alert('No Password Inputed');
+                                window.location.reload();
                             } else if (data.code === 3) {
                                 alert('You Need Reinput Your Password');
+                                window.location.reload();
                             } else if (data.code === 4) {
                                 alert('Two Password Not Match');
+                                window.location.reload();
                             } else if (data.code === 5) {
                                 alert('Username already exist!');
+                                window.location.reload();
                             } else if (data.code === 0) {
                                 bridge.send('register success', function responseCallback(responseData) {
                                     console.log("Response: ", responseData)
@@ -79,6 +87,12 @@
                                 alert('Register Success!');
                             }
                         })
+                })
+                $('#backBtn').click(function(e) {
+                    e.preventDefault();
+                    bridge.send('register success', function responseCallback(responseData) {
+                        console.log("Response: ", responseData)
+                    })
                 })
             })
         })

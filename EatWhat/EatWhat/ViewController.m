@@ -47,6 +47,7 @@ enum {
 - (void)prepareMyButton {
     [self.loginButton setBackgroundColor:[UIColor purpleColor]];
     self.loginButton.layer.cornerRadius = 10.0f;
+    self.loginButton.backgroundColor = [UIColor colorWithRed:0.6 green:0.8 blue:0.3 alpha:1];
 }
 
 - (IBAction)loginButtonTouchUpInside:(UIButton *)sender {
@@ -127,10 +128,10 @@ enum {
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     switch (textField.tag) {
         case textUsernameTag:
-            self.textUsername.layer.borderColor = [[UIColor colorWithRed:0 green:204 blue:100 alpha:1] CGColor];
+            self.textUsername.layer.borderColor = [[UIColor colorWithRed:0.5 green:0.9 blue:0.3 alpha:1] CGColor];
             break;
         case textPasswordTag:
-            self.textPassword.layer.borderColor = [[UIColor colorWithRed:0 green:204 blue:100 alpha:1] CGColor];
+            self.textPassword.layer.borderColor = [[UIColor colorWithRed:0.5 green:0.9 blue:0.3 alpha:1] CGColor];
             break;
         default:
             break;

@@ -84,10 +84,6 @@ div#mc p {
     padding: 8%;
 }
 
-div#mc canvas {
-    padding-left: 3%
-}
-
 /* MotionCAPTCHA canvas */
 
 #mc-canvas {

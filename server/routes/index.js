@@ -31,13 +31,12 @@ router.get('/', function(req, res, next) {
             }
         });
 
-    client.query('SELECT * FROM restaurant ORDER BY RAND() LIMIT 20',
+    client.query('SELECT * FROM restaurant ORDER BY id',
         function(err, rows) {
             if (err) {
                 throw err;
             }
             if (rows) {
-                console.log('hello');
                 console.log(rows);
                 rows.forEach(function(e) {
                     restaurant.push({
