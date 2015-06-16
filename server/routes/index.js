@@ -38,7 +38,6 @@ router.get('/', function(req, res, next) {
                 throw err;
             }
             if (rows) {
-                console.log(rows);
                 rows.forEach(function(e) {
                     restaurant.push({
                         id: e.id,

@@ -52,7 +52,7 @@ def LoadInData():
 	
 
 		
-	return _storeAmount, _userAmount, _UserToStore
+	return storeAmount, userAmount, UserToStore
 
 def SaveInData(EatWhat):
 	global db
@@ -109,7 +109,7 @@ def UserCollaborativeFiltering():
 				if store not in recommand:
 					recommand.append(store)
 
-		recommand = random.sample(recommand,10)
+		recommand = random.sample(recommand,5)
 
 		print 'recommanded store',
 		print recommand

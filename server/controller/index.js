@@ -5,17 +5,22 @@ var client = mysql.createConnection(require('../dbConfig.json'));
 
 exports.order = function(req, res) {
     if (req.body.restaurant_id) {
+        var values = [];
+        var sql = "INSERT INTO evaluate (user_id, restaurant_id, score) VALUES ?";
         for (var i = 0; i < req.body.restaurant_id.length; i++) {
-            client.query('INSERT INTO evaluate(user_id, restaurant_id, score) ', [req.body.user_id, req.body.restaurant_id[i], req.body.score[i]],
-                function(err) {
-                    if (err) {
-                        throw err;
-                    }
-                });
+            console.log(req.body.restaurant_id[i]);
+            var tmpArr = [req.body.user_id, req.body.restaurant_id[i], '4'];
+            values.push(tmpArr);
         }
-        /*return res.json({
-            code: 0,
-            message: "Score Success"
-        });*/
+        client.query(sql, [values],
+            function(err, rows, fields) {
+                if (err) {
+                    throw err;
+                }
+                return res.json({
+                    code: 0,
+                    message: "Score Success"
+                });
+            })
     }
 }

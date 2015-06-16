@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
+    <title>
+        <%=title %>
+    </title>
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" type="text/css" />
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/javascripts/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/stylesheets/app.css" type="text/css" />
-    <title>
-        <%=title %>
-    </title>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
     <div class="row eatTitle">
         <div class="col-xs-5">EatWhat</div>
         <div class="col-xs-7">
-            <a href="/users/logout" id="logout" role="button" class="btn btn-danger">Log out</a>
+            <a href="#" id="logout" role="button" class="btn btn-danger">Log out</a>
             <button type="button" class="btn btn-primary">
                 <%=user.username %>
             </button>
@@ -37,7 +37,7 @@
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Total visited: <%=restaurant[recommend[user.id][i]].total %></a>
                 </li>
                 <li role="presentation">
-                    <img src="<%=restaurant[recommend[user.id][i]].picture %>"/>
+                    <img src="<%=restaurant[recommend[user.id][i]].picture %>" />
                 </li>
             </ul>
         </div>
@@ -48,52 +48,38 @@
                         <input type="checkbox" class="checkboxContent" value="<%=restaurant[i].id %>">
                         <%=restaurant[i].name %>
                     </label>
-                <% } %>
-                    <button type="button" class="btn btn-default" id="updateScore">Submit</button>
+                    <% } %>
+                        <button type="button" class="btn btn-default" id="updateScore">Submit</button>
             </div>
             <script type="text/javascript">
-                function connectWebViewJavascriptBridge(callback) {
-                    if (window.WebViewJavascriptBridge) {
-                        callback(WebViewJavascriptBridge)
-                    } else {
-                        document.addEventListener('WebViewJavascriptBridgeReady', function() {
-                            callback(WebViewJavascriptBridge)
-                        }, false)
-                    }
-                }
-
-                connectWebViewJavascriptBridge(function(bridge) {
-                    jQuery(document).ready(function($) {
-                        $("#logout").click(function(e) {
-                            console.log('!!!!!!!!~~~~~~~~');
-                            e.preventDefault();
-                            $.get('/users/logout',
-                                function(data) {
-                                    if (data.code === 0) {
-                                        bridge.send('logout success', function responseCallback(responseData) {
-                                            console.log("Response: ", responseData)
-                                        })
-                                        alert('logout Success!');
-                                    }
-                                })
-                        })
-
-                        $('#updateScore').click(function() {
-                            e.preventDefault();
-                            var checkedValue = $('.checkboxContent:checked').map(function() {
-                                return parseInt(this.value);
-                            }).get();
-                            console.log(parseInt($('#tmpuser').text()))
-
-                            $.post('/order', {
-                                'user_id': parseInt($('#tmpuser ').text()),
-                                'recommend': checkedValue
-                            }, function(data) {
+                jQuery(document).ready(function($) {
+                    $('#logout').click(function(e) {
+                        e.preventDefault();
+                        console.log('!!!!!!!!~~~~~~~~');
+                        $.get('/users/logout',
+                            function(data) {
                                 if (data.code === 0) {
-                                    alert('Order Success!');
-                                    window.location.reload();
+                                    bridge.send('logout success', function responseCallback(responseData) {
+                                        console.log("Response: ", responseData)
+                                    })
+                                    alert('logout Success!');
                                 }
                             })
+                    })
+                    $('#updateScore').click(function(e) {
+                        e.preventDefault();
+                        var checkedValue = $('.checkboxContent:checked').map(function() {
+                            return parseInt(this.value);
+                        }).get();
+                        console.log(parseInt($('#tmpuser').text()))
+                        $.post('/order', {
+                            'user_id': parseInt($('#tmpuser ').text()),
+                            'restaurant_id': checkedValue
+                        }, function(data) {
+                            if (data.code === 0) {
+                                alert('Order Success!');
+                                window.location.reload();
+                            }
                         })
                     })
                 })
