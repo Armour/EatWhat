@@ -3,29 +3,40 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" type="text/css" />
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/javascripts/bootstrap.min.js"> </script>
+    <script src="/javascripts/app.js"> </script>
+    <link rel="stylesheet" href="/stylesheets/app.css" type="text/css" />
     <title>
         <%=title %>
     </title>
 </head>
 
 <body>
-    <% for (var i = 0; i < restaurant.length; i++) { %>
-        <p><%=restaurant[i].id %></p>
-        <p><%=restaurant[i].name %></p>
-        <p><%=restaurant[i].score %></p>
-        <p><%=restaurant[i].total %></p>
-        <p><%=restaurant[i].picture %></p>
-    <% } %>
-    <p><%= user.id %></p>
-    <p><%= user.username %></p>
-    <p><%= recommend[0] %></p>
-    <p><%= recommend[1] %></p>
-    <p><%= recommend[2] %></p>
-    <p><%= recommend[3] %></p>
-    <p><%= recommend[3][1] %></p>
-    <p><%= recommend[3][2] %></p>
-    <p><%= recommend[3][3] %></p>
-    <p>This user!: <%= recommend[user.id] %></p>
+  <div class="row eatTitle">
+    <div class="col-xs-5"> EatWhat </div>
+    <div class="col-xs-7">
+      <a href="/logout" role="button" class="btn btn-danger">Log out</a>
+      <button type="button" class="btn btn-primary"><%= user.username %></button>
+    </div>
+  </div>
+  <% for (var i = 0; i < restaurant.length; i++) { %>
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" style="width: 100%">
+        <%=restaurant[i].name %>
+      <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><%=restaurant[i].id %></a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><%=restaurant[i].score %></a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><%=restaurant[i].total %></a></li>
+        <li role="presentation"><img src="http://p0.meituan.net/208.0/xianfu/03cec8d7fdfc085bc2c47d8a9765e22851576.jpg" /></li>
+      </ul>
+    </div>
+  <% } %>
+  <p><%= user.id %></p>
+  <p><%= user.username %></p>
 </body>
 
 </html>
