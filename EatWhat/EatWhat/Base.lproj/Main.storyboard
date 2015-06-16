@@ -46,9 +46,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="wTr-DX-nfF">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="309"/>
-                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3vc-wJ-qXo">
                                 <rect key="frame" x="49" y="332" width="277" height="30"/>
                                 <constraints>
@@ -106,6 +103,9 @@
                                     <segue destination="N9f-yS-qZ3" kind="show" identifier="register" id="HbC-0D-MVq"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eat3" translatesAutoresizingMaskIntoConstraints="NO" id="wTr-DX-nfF">
+                                <rect key="frame" x="79" y="65" width="216" height="216"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -115,19 +115,19 @@
                             <constraint firstItem="XoL-wZ-hin" firstAttribute="top" secondItem="3vc-wJ-qXo" secondAttribute="bottom" multiplier="1.06" constant="8" symbolic="YES" id="9xQ-y9-uvd"/>
                             <constraint firstItem="tAR-7E-RJi" firstAttribute="trailing" secondItem="XoL-wZ-hin" secondAttribute="trailing" id="Axr-dR-7tx"/>
                             <constraint firstItem="mow-wv-c6s" firstAttribute="top" secondItem="tAR-7E-RJi" secondAttribute="bottom" constant="8" symbolic="YES" id="GVs-qI-hEW"/>
-                            <constraint firstItem="wTr-DX-nfF" firstAttribute="leading" secondItem="ewe-qZ-yCb" secondAttribute="leading" id="MMb-Zk-ZL5"/>
+                            <constraint firstItem="wTr-DX-nfF" firstAttribute="leading" secondItem="ewe-qZ-yCb" secondAttribute="leading" constant="79" id="MMb-Zk-ZL5"/>
                             <constraint firstAttribute="centerY" secondItem="wTr-DX-nfF" secondAttribute="centerY" id="Phj-xe-QVe"/>
-                            <constraint firstAttribute="trailing" secondItem="wTr-DX-nfF" secondAttribute="trailing" id="PyE-JT-mTw"/>
+                            <constraint firstAttribute="trailing" secondItem="wTr-DX-nfF" secondAttribute="trailing" constant="80" id="PyE-JT-mTw"/>
                             <constraint firstItem="tAR-7E-RJi" firstAttribute="top" secondItem="21W-VE-0DS" secondAttribute="bottom" multiplier="1.02" constant="8" symbolic="YES" id="VJP-kl-8Fh"/>
                             <constraint firstItem="XoL-wZ-hin" firstAttribute="leading" secondItem="21W-VE-0DS" secondAttribute="leading" id="VuE-0K-qVm"/>
                             <constraint firstItem="3vc-wJ-qXo" firstAttribute="trailing" secondItem="XoL-wZ-hin" secondAttribute="trailing" id="Z2N-mO-JLp"/>
                             <constraint firstItem="o8P-gs-vyR" firstAttribute="top" secondItem="mow-wv-c6s" secondAttribute="bottom" multiplier="1.21" constant="8" symbolic="YES" id="bPv-sP-yTy"/>
-                            <constraint firstItem="3vc-wJ-qXo" firstAttribute="top" secondItem="wTr-DX-nfF" secondAttribute="bottom" multiplier="1.05" constant="8" symbolic="YES" id="car-iy-q8N"/>
+                            <constraint firstItem="3vc-wJ-qXo" firstAttribute="top" secondItem="wTr-DX-nfF" secondAttribute="bottom" multiplier="1.05" constant="36.949999999999989" id="car-iy-q8N"/>
                             <constraint firstItem="21W-VE-0DS" firstAttribute="top" secondItem="XoL-wZ-hin" secondAttribute="bottom" constant="8" symbolic="YES" id="h4v-xJ-QyF"/>
                             <constraint firstItem="mow-wv-c6s" firstAttribute="leading" secondItem="tAR-7E-RJi" secondAttribute="leading" id="ijR-5b-tRZ"/>
                             <constraint firstItem="3vc-wJ-qXo" firstAttribute="leading" secondItem="ewe-qZ-yCb" secondAttribute="leadingMargin" multiplier="0.001" constant="49" id="r0f-PV-8AX"/>
                             <constraint firstItem="wTr-DX-nfF" firstAttribute="centerX" secondItem="3vc-wJ-qXo" secondAttribute="centerX" id="sUG-Xc-k1G"/>
-                            <constraint firstItem="wTr-DX-nfF" firstAttribute="top" secondItem="ewe-qZ-yCb" secondAttribute="top" id="y5b-DR-aUn"/>
+                            <constraint firstItem="wTr-DX-nfF" firstAttribute="top" secondItem="ewe-qZ-yCb" secondAttribute="top" constant="65" id="y5b-DR-aUn"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -185,7 +185,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="1278" height="1036"/>
+        <image name="eat3" width="220" height="229"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6BL-Rs-OWL"/>

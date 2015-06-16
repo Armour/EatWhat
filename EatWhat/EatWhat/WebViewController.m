@@ -54,10 +54,10 @@
 
 - (void)addWebViewBridge {
     self.bridge = [WebViewJavascriptBridge bridgeForWebView:_webView webViewDelegate:self handler:^(id data, WVJBResponseCallback responseCallback) {
-        if ([data isEqualToString:@"go back"]) {
+        if ([data isEqualToString:@"logout success"]) {
             [self performSegueWithIdentifier:@"backToLogin2" sender:self];
         }
-        responseCallback(@"");
+        responseCallback(@"logout~");
     }];
 }
 
